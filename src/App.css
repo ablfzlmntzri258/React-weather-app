@@ -1,38 +1,128 @@
-.App {
+.myCard {
+  height: 480px;
+  width: 650px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px) contrast(125%);
+  box-shadow: 0px 0px 30px 1px rgb(0, 0, 0);
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 700px) {
+  .myCard {
+    width: 90%;
+    height: 520px;
+  }
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.title {
+  font-size: 3.5rem;
+  letter-spacing: -2px;
+  color: #009dff;
+  text-shadow: 0px 0px 5px;
+}
+
+.note {
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
   text-align: center;
+  color: rgb(24, 0, 113);
+  text-shadow: 0px 0px 1px;
+  padding-top: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.resultNote {
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+  text-align: center;
+  color: rgb(24, 0, 113);
+  text-shadow: 0px 0px 1px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.myInput {
+  color: rgb(24, 0, 113);
+  font-size: 25px;
+  margin: auto;
+  width: 90%;
+  height: 50px;
+  background-color: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid rgb(24, 0, 113);
+  transition: 0.2s linear;
+}
+
+.myInput:focus {
+  outline: none;
+  border-bottom: 2px solid #009dff;
+}
+
+.myInput::placeholder {
+  font-family: nunito;
+  color: rgb(24, 0, 113);
+  opacity: 30%;
+  transition: opacity 0.2s;
+  text-align: center;
+  font-size: 17px;
+}
+
+.myInput:focus::placeholder {
+  /* color: rgb(0, 123, 255); */
+  opacity: 50%;
+  transition: 0.2s;
+}
+
+@keyframes animation {
+  0% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -105;
+  }
+
+  50% {
+    stroke-dasharray: 80 10;
+    stroke-dashoffset: -160;
+  }
+
+  100% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -300;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#spinner {
+  transform-origin: center;
+  animation-name: animation;
+  animation-duration: 1.2s;
+  animation-timing-function: cubic-bezier;
+  animation-iteration-count: infinite;
+  fill: transparent;
+  stroke: #009dff;
+  stroke-width: 7px;
+  stroke-linecap: round;
+  filter: url(#shadow);
 }
 
-.App-link {
-  color: #61dafb;
+.button {
+  height: 50px;
+  font-size: larger;
+  width: 100px;
+  color: #ffffff;
+  background-color: rgb(24, 0, 113);
+  border-radius: 2px;
+  border: none;
+  transition: 0.3s;
+  box-shadow: 0px 1px 5px 1px rgb(24, 0, 113);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button:hover {
+  height: 50px;
+  width: 100px;
+  color: #ffffff;
+  box-shadow: 0px 1px 5px 1px #009dff;
+  background-color: #009dff;
+  scale: 1.02;
 }
