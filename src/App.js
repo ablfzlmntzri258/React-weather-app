@@ -9,7 +9,11 @@ import Result from './Result';
 function App() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({
+    isFailed: false,
+    status: 0,
+    errorMessage: ""
+  });
   const [result, setResult] = useState({
     isReady: false,
     description: "",
@@ -18,14 +22,30 @@ function App() {
     wind: ""
   });
 
+  const boxShadowStyle = {boxShadow: result.isReady ? "0px 0px 30px 1px #009dff" : 
+  error.isFailed ? "0px 0px 30px 1px rgb(255, 0, 0)" :
+   "0px 0px 30px 1px rgb(0, 0, 0)"}
+
   useEffect(() => {
     if (loading) {
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=eb3e2db5cff5f470df5ca2d1ba062f70`)
         .then((result) => {
           if (result.ok)
             return result.json()
-          console.log(result.statusText);
-          setError(true)
+          else if(result.status === 404){
+            setError({
+              isFailed: true,
+              status: 404,
+              errorMessage: "City not found, check your spelling!"
+            })
+          }
+          else {
+            setError({
+              isFailed: true,
+              status: result.status,
+              errorMessage: result.statusText
+            })
+          }
           setLoading(false)
         })
         .then((result) => {
@@ -44,9 +64,12 @@ function App() {
           }
         })
         .catch((e) => {
-          console.log(e)
           setLoading(false)
-          setError(true)
+          setError({
+            isFailed: true,
+            status: 0,
+            errorMessage: "Something went wrong, check your connection!"
+          })
         })
     }
   }, [loading])
@@ -70,9 +93,9 @@ function App() {
 
   return (
     <div className="d-flex h-100 w-100 pb-5">
-      <div className="d-flex flex-column m-auto myCard p-4">
+      <div className="d-flex flex-column m-auto myCard p-4" style={boxShadowStyle}>
         {result.isReady ? <Result result={{ ...result, city: input }} handleBackButton={handleBackButton} /> :
-          error ? <Error handleBackButton={handleBackButton} /> :
+          error.isFailed ? <Error handleBackButton={handleBackButton} errorMessage={error.errorMessage} status={error.status} /> :
             loading ? <Loading /> : <Input input={input} handleInput={handleInput} handleEnter={handleEnter} handleBackButton={handleBackButton} />}
       </div>
     </div>
