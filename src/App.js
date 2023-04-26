@@ -102,7 +102,7 @@ function App() {
 
   return (
     <div className="d-flex h-100 w-100 pb-5">
-      <div className="d-flex flex-column m-auto myCard p-4" style={boxShadowStyle}>
+      <div className="d-flex flex-column m-auto myCard p-4 fade-in" style={boxShadowStyle}>
         {result.isReady ? <Result result={{ ...result, city: input }} handleBackButton={handleBackButton} /> :
           error.isFailed ? <Error handleBackButton={handleBackButton} errorMessage={error.errorMessage} status={error.status} /> :
             loading ? <Loading handleCancel={handleCancel} /> : <Input input={input} handleInput={handleInput} handleEnter={handleEnter} />}

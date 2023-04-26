@@ -5,8 +5,9 @@
   backdrop-filter: blur(15px) contrast(125%);
   box-shadow: 0px 0px 30px 1px rgb(0, 255, 0);
   border-radius: 2px;
-  transition: 0.3s;
+  transition: 0.5s;
 }
+
 
 @media screen and (max-width: 700px) {
   .myCard {
@@ -126,4 +127,32 @@ a:link {
   box-shadow: 0px 1px 5px 1px #009dff;
   background-color: #009dff;
   scale: 1.02;
+}
+
+@keyframes fade-in{
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out{
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fade-out 0.5s;
+}
+
+.fade-in {
+  animation: fade-in 0.5s;
 }
