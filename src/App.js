@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Loading from './Loading';
@@ -7,6 +7,7 @@ import Error from './Error';
 import Result from './Result';
 
 function App() {
+  const abortController = useRef(null)
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState({
@@ -27,8 +28,9 @@ function App() {
    "0px 0px 30px 1px rgb(0, 0, 0)"}
 
   useEffect(() => {
+    abortController.current = new AbortController()
     if (loading) {
-      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=eb3e2db5cff5f470df5ca2d1ba062f70`)
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=eb3e2db5cff5f470df5ca2d1ba062f70`,{ signal: abortController.current.signal })
         .then((result) => {
           if (result.ok)
             return result.json()
@@ -64,6 +66,7 @@ function App() {
           }
         })
         .catch((e) => {
+          if(e.name === "AbortError") return
           setLoading(false)
           setError({
             isFailed: true,
@@ -91,12 +94,18 @@ function App() {
     setInput('')
   }
 
+  function handleCancel() {
+    setLoading(false)
+    setError({...error, isFailed: false})
+    abortController.current && abortController.current.abort()
+  }
+
   return (
     <div className="d-flex h-100 w-100 pb-5">
       <div className="d-flex flex-column m-auto myCard p-4" style={boxShadowStyle}>
         {result.isReady ? <Result result={{ ...result, city: input }} handleBackButton={handleBackButton} /> :
           error.isFailed ? <Error handleBackButton={handleBackButton} errorMessage={error.errorMessage} status={error.status} /> :
-            loading ? <Loading /> : <Input input={input} handleInput={handleInput} handleEnter={handleEnter} handleBackButton={handleBackButton} />}
+            loading ? <Loading handleCancel={handleCancel} /> : <Input input={input} handleInput={handleInput} handleEnter={handleEnter} />}
       </div>
     </div>
   );
