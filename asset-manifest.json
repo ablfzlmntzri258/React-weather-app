@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.54637b5a.css",
+    "main.js": "/static/js/main.affca04e.js",
+    "static/media/4517213-clouds-digital-art.jpg": "/static/media/4517213-clouds-digital-art.5f32315aebad4c56eabf.jpg",
+    "static/media/Nunito-Regular.ttf": "/static/media/Nunito-Regular.99a3b019e7727ac19479.ttf",
+    "index.html": "/index.html",
+    "main.54637b5a.css.map": "/static/css/main.54637b5a.css.map",
+    "main.affca04e.js.map": "/static/js/main.affca04e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.54637b5a.css",
+    "static/js/main.affca04e.js"
+  ]
+}
