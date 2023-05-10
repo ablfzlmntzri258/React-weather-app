@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/React-weather-app/static/css/main.1726d88e.css",
+    "main.css": "/React-weather-app/static/css/main.539a17a0.css",
     "main.js": "/React-weather-app/static/js/main.affca04e.js",
     "static/media/4517213-clouds-digital-art.jpg": "/React-weather-app/static/media/4517213-clouds-digital-art.5f32315aebad4c56eabf.jpg",
     "static/media/Nunito-Regular.ttf": "/React-weather-app/static/media/Nunito-Regular.99a3b019e7727ac19479.ttf",
     "index.html": "/React-weather-app/index.html",
-    "main.1726d88e.css.map": "/React-weather-app/static/css/main.1726d88e.css.map",
+    "main.539a17a0.css.map": "/React-weather-app/static/css/main.539a17a0.css.map",
     "main.affca04e.js.map": "/React-weather-app/static/js/main.affca04e.js.map"
   },
   "entrypoints": [
-    "static/css/main.1726d88e.css",
+    "static/css/main.539a17a0.css",
     "static/js/main.affca04e.js"
   ]
 }
