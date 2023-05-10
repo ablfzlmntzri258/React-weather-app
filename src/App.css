@@ -16,6 +16,25 @@
   }
 }
 
+
+@media screen and (max-width: 420px) {
+  .myCard{
+    width: 100%;
+  }
+
+  h1{
+    font-size: 43px !important;
+  }
+
+  p{
+    font-size: 22px !important;
+  }
+  
+  .myInput::placeholder{
+    font-size: 13px !important;
+  }
+}
+
 a:link {
   text-decoration: none;
 }
